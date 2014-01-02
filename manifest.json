@@ -1,0 +1,18 @@
+{
+   "app": {
+      "launch": {
+         "local_path": "switch.html"
+      }
+   },
+   "description": "Easily interact with everything VortexBox",
+   "icons": {
+      "128": "icon_128.png",
+      "16": "icon_16.png"
+   },
+   "key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDBOqSPopSPLzkfR+hFRGTQCtqAddiGIHcHLmatRrnSR25O4CQsUVEX6+RazI2jE3LW9V2VL+KOyPXny3M0nehLSoApq4LyIlhWyafBYR9N4HJ7dnMclsS5qV1sE5vDYSIahCSfv3CUa5x5pXRNdi/Aj+bxGhSR7ibV0N/d3Af+0QIDAQAB",
+   "name": "VortexBox",
+   "options_page": "options.html",
+   "permissions": [ "unlimitedStorage" ],
+   "update_url": "http://clients2.google.com/service/update2/crx",
+   "version": "0.7"
+}
