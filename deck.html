@@ -13,6 +13,7 @@
   <script type="text/javascript" src="/js/constants.js"></script>
   
   <!--Add Fancybox-->
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <link rel="stylesheet" href="/fancybox/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
   <script type="text/javascript" src="/fancybox/jquery.fancybox.pack.js?v=2.1.5"></script>
 
@@ -20,7 +21,6 @@
   <script type="text/javascript">
     protocol = localStorage['vortexbox-protocol'] || defaults[0];
     domain = localStorage['domain'] || defaults[1];
-    port = localStorage['squeezebox-port'] || defaults[3];
     function ConfirmChoice() {
       answer = confirm("Are you sure you want to reboot your VortexBox?");
       if (answer !=0)  {
@@ -29,10 +29,42 @@
     }
   </script>
   <script type="text/javascript">
+  function seturl(service) {
+        protocol = localStorage[service+'-protocol'] || defaults[2];
+        domain = localStorage['domain'] || defaults[1];
+        port = localStorage[service+'-port'] || defaults[3];
+        $('#'+service).attr('href',protocol+'://'+domain+':'+port);
+	}
+    function setvbox() {
+    protocol = localStorage['vortexbox-protocol'] || defaults[0];
+    domain = localStorage['domain'] || defaults[1];
+    $('#rippingstatus').attr('href',protocol+'://'+domain+'/rippingstatus.php');
+    $('#flacmirror').attr('href',protocol+'://'+domain+'/flacmirror.php');
+    $('#phpsysinfo').attr('href',protocol+'://'+domain+'/phpsysinfo.php');
+    $('#network').attr('href',protocol+'://'+domain+'/network.php');
+    $('#system').attr('href',protocol+'://'+domain+'/system.php');
+    $('#backup').attr('href',protocol+'://'+domain+'/backup.php');
+    $('#dlna').attr('href',protocol+'://'+domain+'/dlna.php');
+    $('#plex').attr('href',protocol+'://'+domain+':32400/manage');
+    $('#vortexbox-player').attr('href',protocol+'://'+domain+'/vortexbox-player.php');
+    $('#upgrade').attr('href',protocol+'://'+domain+'/upgrade.php');
+    }
+  </script>
+  <script type="text/javascript">
 	$(document).ready(function() {
+        seturl('squeezebox');
+        seturl('transmission');
+        seturl('musicip');
+        seturl('subsonic');
+        seturl('subsonic-online');
+        seturl('bliss');
+        seturl('webmin');
+        seturl('shellinabox');
+        setvbox();
 		$(".fancybox").fancybox();
 	});
   </script>
+  
 
 </head>
 
@@ -67,25 +99,25 @@
         <!-- ============== ICON LINE 1 ============== -->
 
             <div class="img">
-              <a id="lms" href="/html/squeeze.html" target="_blank">
+              <a id="squeezebox" href="/html/squeeze.html" target="_blank">
                 <img src="/images/SqueezeCenter.png" alt=""/>
                 <div class="description">Logitech Media<br/>Server</div>
               </a>
             </div>
             <div class="img">
-              <a id="rip" href="/html/rippingstatus.html" target="_blank">
+              <a id="rippingstatus" href="/html/rippingstatus.html" target="_blank">
                 <img src="/images/cddrive.png" alt=""/>
                 <div class="description">Ripping<br/>Status</div>
               </a>
             </div>
             <div class="img">
-              <a id="mirror" href="/html/flacmirror.html" target="_blank">
+              <a id="flacmirror" href="/html/flacmirror.html" target="_blank">
                 <img src="/images/flacmirror.png" alt=""/>
                 <div class="description">FLAC<br/>Mirror</div>
               </a>
             </div>
             <div class="img">
-              <a id="sysinfo" href="/html/phpsysinfo.html" target="_blank">
+              <a id="phpsysinfo" href="/html/phpsysinfo.html" target="_blank">
                 <img src="/images/status.png" alt=""/>
                 <div class="description">System<br/>Status</div>
               </a>
@@ -97,7 +129,7 @@
               </a>
             </div>
             <div class="img">
-              <a id="sysconf" href="/html/system.html" target="_blank">
+              <a id="system" href="/html/system.html" target="_blank">
                 <img src="/images/tools.png" alt=""/>
                 <div class="description">System<br/>Config</div>
               </a>
@@ -112,15 +144,15 @@
           <!-- ============== ICON LINE 2 ============== -->
           
             <div class="img">
-              <a id="minidlna" href="/html/dlna.html" target="_blank">
+              <a id="dlna" href="/html/dlna.html" target="_blank">
                 <img src="/images/dlna_v2.png" alt=""/>
                 <div class="description">DLNA<br/>&nbsp;</div>
               </a>
             </div>
             <div class="img">
-              <a id="daap" href="/html/daap.html" target="_blank">
-                <img src="/images/itunes.png" alt=""  />
-                <div class="description">iTunes<br/>&nbsp;</div>
+              <a id="plex" href="">
+                <img src="/images/plex.png" alt=""  />
+                <div class="description">Plex<br/>&nbsp;</div>
               </a>
             </div>
             <div class="img">
@@ -142,7 +174,7 @@
               </a>
             </div>
             <div class="img">
-              <a id="ssdomain" href="/html/subsoniconline.html" target="_blank">
+              <a id="subsonic-online" href="/html/subsoniconline.html" target="_blank">
                 <img src="/images/subsonic-gray-128.png" alt=""/>
                 <div class="description">Subsonic<br/>Online </div>
               </a>
@@ -157,7 +189,7 @@
           <!-- ============== ICON LINE 3 ============== -->
           
             <div class="img">
-              <a id="vbplayer" href="/html/vortexbox-player.html" target="_blank">
+              <a id="vortexbox-player" href="/html/vortexbox-player.html" target="_blank">
                 <img src="/images/vortexbox-player.png" alt=""/>
                 <div class="description">VB Player<br/>&nbsp;</div>
               </a>
@@ -191,7 +223,7 @@
               </a>
             </div>
             <div class="img">
-              <a href="http://vortexbox.org/forum/" 
+              <a id="forum" href="http://vortexbox.org/forum/" 
                 id="vortexbox.org/forum"
                 target="_blank">
                 <img src="/images/forum_v2.png" alt=""
